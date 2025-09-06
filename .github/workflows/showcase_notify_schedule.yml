@@ -23,8 +23,8 @@ jobs:
       - name: Run monitoring script
         run: node scripts/showcase_monitor.js
         env:
-          WECOM_WEBHOOK_URL: ${{ secrets.WECOM_WEBHOOK_WORK_URL }}
-          WECOM_PIC_URL_NORMAL: ${{ secrets.WECOM_PIC_URL_SHOWCASE }}
+          WECOM_WEBHOOK_WORK_URL: ${{ secrets.WECOM_WEBHOOK_WORK_URL }}
+          WECOM_PIC_URL_SHOWCASE: ${{ secrets.WECOM_PIC_URL_SHOWCASE }}
 
       - name: Send notification on failure
         if: failure()
