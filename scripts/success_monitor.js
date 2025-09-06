@@ -24,8 +24,8 @@ async function sendWecomNotification(message, type) {
       msgtype: 'news',
       news: {
         articles: [{
-          title: `系统定时通知: ${message}`,
-          description: `通知时间: ${new Date().toLocaleString('zh-CN')}`,
+          title: `${message}`,
+          description: `通知时间UTC: ${new Date().toLocaleString('zh-CN')}`,
           url: 'https://www.byd.com/br/ofertas',
           picurl: type === 'error' ? picUrlError : picUrlNormal
         }]
