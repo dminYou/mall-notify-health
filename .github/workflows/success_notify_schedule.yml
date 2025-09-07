@@ -1,7 +1,7 @@
 name: 电商系统定期查看促销车页面
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 */8 * * *'
   workflow_dispatch:
 
 jobs:
