@@ -1,7 +1,8 @@
-name: 电商系统异常连续监控
-
+name: 电商系统异常准点检查通知
 on:
-  workflow_dispatch:  # 手动触发第一次运行
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 jobs:
   monitor:
@@ -25,18 +26,6 @@ jobs:
           WECOM_WEBHOOK_URL: ${{ secrets.WECOM_WEBHOOK_URL }}
           WECOM_PIC_URL_NORMAL: ${{ secrets.WECOM_PIC_URL_NORMAL }}
           WECOM_PIC_URL_ERROR: ${{ secrets.WECOM_PIC_URL_ERROR }}
-
-      - name: 自动触发下一次运行
-        if: success()  # 只有成功时才触发
-        uses: actions/github-script@v6
-        with:
-          script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: '${{ github.workflow }}.yml',
-              ref: '${{ github.ref }}',
-            });
 
       - name: Send notification on failure
         if: failure()

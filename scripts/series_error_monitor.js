@@ -2,7 +2,7 @@ const axios = require('axios');
 const { setTimeout } = require('timers/promises');
 
 // 总循环次数和间隔时间（单位：毫秒）
-const TOTAL_RUNS = 10;
+const TOTAL_RUNS = 60;
 const INTERVAL_MS = 60 * 1000; // 1分钟
 
 async function main() {
