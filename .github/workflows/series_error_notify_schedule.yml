@@ -1,8 +1,8 @@
-name: 电商系统异常检查通知连续监控
+name: 电商系统异常连续监控
 on:
   workflow_dispatch:  # 手动触发第一次
   workflow_run:       # 监听自身完成事件
-    workflows: ["电商系统异常检查通知连续监控"]  # 监听当前工作流
+    workflows: ["电商系统异常连续监控"]  # 监听当前工作流
     types: [completed]             # 完成后触发
 
 jobs:
