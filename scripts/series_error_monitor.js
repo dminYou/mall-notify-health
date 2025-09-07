@@ -1,4 +1,26 @@
 const axios = require('axios');
+const { setTimeout } = require('timers/promises');
+
+// 总循环次数和间隔时间（单位：毫秒）
+const TOTAL_RUNS = 20;
+const INTERVAL_MS = 60 * 1000; // 1分钟
+
+async function main() {
+  console.log(`🔄 开始循环监控任务，共执行 ${TOTAL_RUNS} 次，每次间隔 1 分钟`);
+
+  for (let i = 1; i <= TOTAL_RUNS; i++) {
+    console.log(`\n=== 第 ${i} 次执行 ===`);
+    await monitor().catch(console.error);
+
+    // 如果不是最后一次循环，则休眠
+    if (i < TOTAL_RUNS) {
+      console.log(`⏳ 等待 ${INTERVAL_MS / 1000} 秒后继续...`);
+      await setTimeout(INTERVAL_MS);
+    }
+  }
+
+  console.log('🎉 所有监控任务执行完成');
+}
 
 async function monitor() {
   console.log('🕒 开始执行定时检测任务...');
@@ -24,10 +46,9 @@ async function monitor() {
 }
 
 async function sendWecomNotification(message, type) {
-  // 从环境变量读取敏感信息
   const webhookUrl = process.env.WECOM_WEBHOOK_URL;
-  const picUrlNormal = process.env.WECOM_PIC_URL_NORMAL; // 正常图片
-  const picUrlError = process.env.WECOM_PIC_URL_ERROR;   // 错误图片
+  const picUrlNormal = process.env.WECOM_PIC_URL_NORMAL;
+  const picUrlError = process.env.WECOM_PIC_URL_ERROR;
 
   if (!webhookUrl || !picUrlNormal || !picUrlError) {
     console.error('❌ 缺少环境变量: WECOM_WEBHOOK_URL 或 WECOM_PIC_URL');
@@ -52,4 +73,5 @@ async function sendWecomNotification(message, type) {
   }
 }
 
-monitor().catch(console.error);
+// 启动循环任务
+main().catch(console.error);
