@@ -1,7 +1,7 @@
 name: 电商系统定期功能演示
 on:
   schedule:
-    - cron: '0 1 * * 4'
+    - cron: '0 0 * * 4'
   workflow_dispatch:
 
 jobs:
