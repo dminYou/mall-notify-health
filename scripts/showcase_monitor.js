@@ -5,7 +5,7 @@ async function sendNotification() {
   console.log('当前时间:', new Date().toLocaleString('zh-CN'));
 
   // 直接发送通知（默认使用成功状态的图片）
-  await sendWecomNotification('功能演示提醒', 'normal');
+  await sendWecomNotification('功能演示/发版提醒', 'normal');
 }
 
 async function sendWecomNotification(message, type) {
