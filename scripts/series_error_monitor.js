@@ -41,7 +41,7 @@ async function monitor() {
 
   } catch (error) {
     console.error('❌ 请求失败:', error.message);
-    await sendWecomNotification('电商域名无法访问', 'error');
+    await sendWecomNotification('电商系统访问超时', 'error');
   }
 }
 
