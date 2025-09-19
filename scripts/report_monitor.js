@@ -10,8 +10,8 @@ async function sendNotification() {
 
 async function sendWecomNotification(message, type) {
   // 从环境变量读取配置
-  const webhookUrl = process.env.WECOM_WEBHOOK_WORK_URL;
-  const picUrlNormal = process.env.WECOM_PIC_URL_CHECK;
+  const webhookUrl = process.env.WECOM_WEBHOOK_REPORT_URL;
+  const picUrlNormal = process.env.WECOM_PIC_URL_NORMAL;
 
   if (!webhookUrl || !picUrlNormal) {
     console.error('❌ 缺少环境变量配置');
